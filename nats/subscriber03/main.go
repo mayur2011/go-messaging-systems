@@ -15,23 +15,20 @@ func main(){
 	}
 
 	defer nc.Close()
-	
+
 	sub, err1 := nc.SubscribeSync("events.*")
 	if err1 != nil {
 		logrus.Fatal(err)
 	}
-	
-	defer sub.Unsubscribe()
-	
+
 	for {
-	if msg, _ := sub.NextMsg(5 * time.Second); msg != nil {
-	fmt.Printf("msg rcd on subject: %v, data:%v\n",
-		msg.Subject, string(msg.Data))
-	} //else {
-	//	break
-	//}
-	}	
+		if msg, _ := sub.NextMsg(5 * time.Second); msg != nil {
+			fmt.Printf("msg rcd on subject: %v, data:%v\n",
+			msg.Subject, string(msg.Data))
+		} else {
+			break
+		}
+	}
 
-	//sub.Unsubscribe()
-
+	sub.Unsubscribe()
 }
