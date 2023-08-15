@@ -22,7 +22,7 @@ func main(){
 	defer nc.Close()
 
 	i:=1
-	for ; i<1e5; i++ {
+	for ; i<100; i++ {
 		s:= fmt.Sprintf("message: %v, data: %v",i,rg.Intn(10000))
 
 		// NATS Request from Publishing end to Subscribing subject

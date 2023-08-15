@@ -16,7 +16,7 @@ func main(){
 	}
 	defer nc.Close()
 
-	count:= 0
+	count:= 1
 	sub, _ := nc.Subscribe("events.local", func(msg *nats.Msg){
 		count++
 		fmt.Printf("Msg received on sub: %v, Data: %v\n", msg.Subject, string(msg.Data))
